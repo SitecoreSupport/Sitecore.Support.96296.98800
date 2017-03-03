@@ -1,5 +1,6 @@
 # Sitecore.Support.96296.98800
-Prevents from the Cannot insert duplicate key in object 'dbo.SessionState' exception when there are simultaneous requests to the same server with the same session cookie
+The `Cannot insert duplicate key in object 'dbo.SessionState'` exception may occur when you use the `mssql` session state provider and there are simultaneous requests to the same server with the same session cookie.<br/>
+This patch prevents from the described behavior.
 
 ## License  
 This patch is licensed under the [Sitecore Corporation A/S License for GitHub](https://github.com/sitecoresupport/Sitecore.Support.96296.98800/blob/master/LICENSE).  
