@@ -125,7 +125,7 @@ namespace Sitecore.Support.SessionProvider.Sql
         {
             using (SqlCommand sqlCommand = new SqlCommand())
             {
-                sqlCommand.CommandText = "SELECT [id] FROM [tempdb].[dbo].[SessionState] WHERE [id]=@id";
+                sqlCommand.CommandText = "SELECT [id] FROM [dbo].[SessionState] WHERE [id]=@id";
                 sqlCommand.CommandType = CommandType.Text;
                 SqlParameter value = new SqlParameter
                 {
