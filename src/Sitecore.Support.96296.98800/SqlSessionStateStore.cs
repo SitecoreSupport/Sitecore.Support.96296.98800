@@ -355,6 +355,7 @@ namespace Sitecore.Support.SessionProvider.Sql
                 if (this.IsItemExist(id))
                 {
                     Log.Debug("Attempting to insert a duplicate key into the SQL Session Store. Entry skipped.");
+                    return;
                 }
                 byte[] value = SessionStateSerializer.Serialize(sessionState, this.m_Compress);
                 using (SqlCommand sqlCommand = new SqlCommand())
@@ -405,9 +406,9 @@ namespace Sitecore.Support.SessionProvider.Sql
                     }
                 }
             }
-            catch (Exception arg)
+            catch (Exception ex)
             {
-                Log.Error("Sitecore.Support.439438#Error occured: " + arg, this);
+                Log.Error("Sitecore.Support.96296.98800: " + ex, this);
             }
         }
 
