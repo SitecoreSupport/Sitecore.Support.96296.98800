@@ -19,7 +19,7 @@ namespace Sitecore.Support.SessionProvider.Sql
 
     private SqlSessionStateStore m_Store;
 
-    private static readonly object SyncRoot;
+    private new static readonly object SyncRoot;
 
     private static readonly FieldInfo timerInfo;
 
