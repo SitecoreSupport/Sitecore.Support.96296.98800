@@ -521,7 +521,7 @@ namespace Sitecore.Support.SessionProvider.Sql
           sqlr = ((int)paramResult.Value);
         }
 
-        Debug.Assert(sqlr == 1, "Failed to update and release the session state item.");
+        Debug.Assert(sqlr == 0, "Failed to update and release the session state item.");
       }
     }
 
@@ -597,7 +597,7 @@ namespace Sitecore.Support.SessionProvider.Sql
           sqlr = ((int)paramResult.Value);
         }
 
-        Debug.Assert(sqlr == 1, "Failed to release the session state item.");
+        Debug.Assert(sqlr == 0, "Failed to release the session state item.");
       }
     }
 
@@ -673,7 +673,7 @@ namespace Sitecore.Support.SessionProvider.Sql
           sqlr = ((int)paramResult.Value);
         }
 
-        Debug.Assert(sqlr == 1, "Failed to remove the session state item.");
+        Debug.Assert(sqlr == 0, "Failed to remove the session state item.");
       }
     }
 
