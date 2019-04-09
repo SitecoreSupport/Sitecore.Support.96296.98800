@@ -121,36 +121,6 @@ namespace Sitecore.Support.SessionProvider.Sql
             return result;
         }
 
-        private bool IsItemExist(string id)
-        {
-            using (SqlCommand sqlCommand = new SqlCommand())
-            {
-                sqlCommand.CommandText = "SELECT [id] FROM [tempdb].[dbo].[SessionState] WHERE [id]=@id";
-                sqlCommand.CommandType = CommandType.Text;
-                SqlParameter value = new SqlParameter
-                {
-                    ParameterName = "@id",
-                    SqlDbType = SqlDbType.NVarChar,
-                    Size = 88,
-                    Value = id
-                };
-                sqlCommand.Parameters.Add(value);
-                using (SqlConnection sqlConnection = new SqlConnection(this.m_ConnectionString))
-                {
-                    sqlConnection.Open();
-                    sqlCommand.Connection = sqlConnection;
-                    using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader(CommandBehavior.SingleRow))
-                    {
-                        if (sqlDataReader.Read() && !sqlDataReader.IsDBNull(0))
-                        {
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-
         internal SessionStateStoreData GetItem(Guid application, string id, out SessionStateLockCookie lockCookie, out int flags)
         {
             lockCookie = null;
@@ -352,11 +322,6 @@ namespace Sitecore.Support.SessionProvider.Sql
         {
             try
             {
-                if (this.IsItemExist(id))
-                {
-                    Log.Debug("Attempting to insert a duplicate key into the SQL Session Store. Entry skipped.");
-                    return;
-                }
                 byte[] value = SessionStateSerializer.Serialize(sessionState, this.m_Compress);
                 using (SqlCommand sqlCommand = new SqlCommand())
                 {
