@@ -371,6 +371,17 @@ namespace Sitecore.Support.SessionProvider.Sql
                     }
                 }
             }
+            catch (SqlException sqlException)
+            {
+                if (sqlException.Number == 2601 || sqlException.Number == 2627)
+                {
+                    Log.Debug("Attempting to insert a duplicate key into the SQL Session Store. Entry skipped. " + sqlException.Message);
+                }
+                else
+                {
+                    Log.Error(sqlException.Message, sqlException);
+                }
+            }
             catch (Exception ex)
             {
                 Log.Error("Sitecore.Support.96296.98800: " + ex, this);
